@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="keisan.css">
+    <script>
+      function changeBtn1(){
+        let firstnum = document.getElementById("numberField");
+        firstnumField.innerHTML = firstnum.value;
+        plus.innerHTML = "+"
+        first = firstnum.value;
+        firstnum.value = "";
+
+        document.getElementById("numberField").placeholder = "２つめの数値を入力してください";
+        document.getElementById("keisanButton").value = "計算開始";
+        changeOnclick(first);
+      }
+      function changeOnclick(first){
+        document.getElementById("keisanButton").remove();
+        let newbutton = document.getElementById("newButton");
+        let createbutton = document.createElement("input");
+        createbutton.type="button";
+        createbutton.value="計算開始";
+        createbutton.id="keisanButton";
+        createbutton.setAttribute("onclick", "changeBtn2(first)");
+        newbutton.appendChild(createbutton);
+
+      }
+      function changeBtn2(firstnum){
+        let secondnum = document.getElementById("numberField");
+        let result = Number(firstnum) + Number(secondnum.value);
+        document.getElementById("firstnumField").innerHTML = firstnum;
+        document.getElementById("plus").innerHTML = "+";
+        document.getElementById("secondnumField").innerHTML = secondnum.value;
+        document.getElementById("equal").innerHTML = "=";
+        document.getElementById("resultField").innerHTML = result;
+        secondnum.value = "";
+      }
+    </script>
+    <title>足し算</title>
+  </head>
+  <body>
+    <label><input type="text" name="first" id="numberField" size="30" placeholder="１つめの数値を入力してください" ></label>
+    <input type="button" value="2つめへ進む" id="keisanButton" onclick="changeBtn1()">
+    <p id="newButton"></p>
+
+    <br><p id="firstnumField"></p><p id="plus"></p><p id="secondnumField"></p><p id="equal"></p><p id="resultField"></p>
+  </body>
